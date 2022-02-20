@@ -1,8 +1,10 @@
 package com.wiwats.shopping.user.model;
 
+import com.wiwats.shopping.basket.model.Basket;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -19,6 +21,13 @@ public class User{
 	private String userName;
 	private String createdDate;
 	private String password;
+
+	public User(Long userId) {
+		this.userId = userId;
+	}
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Basket> baskets = new HashSet<>();
 
 
 	public void setUserFromRequest(UserRequest userRequest) {

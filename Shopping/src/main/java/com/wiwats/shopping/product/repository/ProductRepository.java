@@ -10,6 +10,6 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
 
     List<Product> findByNameContainingIgnoreCase(String productName);
 
-//    @Query("SELECT p FROM Product p LEFT JOIN p.basket bk LEFT JOIN bk.user u  WHERE u.userid LIKE ?1")
-//     List<Product> findByUserBasket(Long userId);
+    @Query("SELECT DISTINCT p FROM Product p JOIN p.baskets bk LEFT JOIN bk.user u  WHERE u.userId LIKE ?1")
+     List<Product> findByUserBasket(Long userId);
 }

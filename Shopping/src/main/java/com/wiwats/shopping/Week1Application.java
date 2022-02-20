@@ -1,8 +1,8 @@
 package com.wiwats.shopping;
 
-import com.wiwats.shopping.product.model.Basket;
+import com.wiwats.shopping.basket.model.BasketRequest;
+import com.wiwats.shopping.basket.service.BasketService;
 import com.wiwats.shopping.product.model.Product;
-import com.wiwats.shopping.product.repository.BasketRepository;
 import com.wiwats.shopping.product.repository.ProductRepository;
 import com.wiwats.shopping.user.model.User;
 import com.wiwats.shopping.user.repository.UserRepository;
@@ -56,15 +56,15 @@ public class Week1Application {
 		};
 	}
 
-	@Bean
-	public CommandLineRunner demoBasketData(BasketRepository basketRepository) {
-		return args -> {
-			basketRepository.save(new Basket(1L,1L,1L,1));
-			basketRepository.save(new Basket(2L,1L,2L,2));
-			basketRepository.save(new Basket(3L,1L,3L,3));
-			basketRepository.save(new Basket(4L,1L,4L,2));
-			basketRepository.save(new Basket(5L,1L,5L,1));
-
-		};
-	}
+//	@Bean
+//	public CommandLineRunner demoBasketData(BasketService basketService) {
+//		return args -> {
+//			basketService.addProductToBasket(new BasketRequest(0L,1L,1L,1));
+//			basketService.addProductToBasket(new BasketRequest(0L,1L,2L,8));
+//			basketService.addProductToBasket(new BasketRequest(0L,2L,3L,9));
+//			basketService.addProductToBasket(new BasketRequest(0L,2L,1L,3));
+//			basketService.addProductToBasket(new BasketRequest(0L,3L,3L,2));
+//		};
+//	}
+	
 }

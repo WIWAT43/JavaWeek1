@@ -15,8 +15,8 @@ public class ProductService {
    @Autowired
     ProductRepository productRepository;
 
-//   public List<Product> findByUserBasket (Long userId){
- //     return productRepository.findByUserBasket(userId);
- //  }
+   public List<Product> findByUserInBasket (Long userId){
+      return productRepository.findByUserBasket(userId);
+   }
 
 }

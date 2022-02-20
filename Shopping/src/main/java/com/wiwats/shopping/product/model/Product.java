@@ -1,8 +1,10 @@
 package com.wiwats.shopping.product.model;
 
+import com.wiwats.shopping.basket.model.Basket;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -17,7 +19,14 @@ public class Product{
 	private String image;
 	private double price;
 
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Basket> baskets = new HashSet<>();
+
 	public Product() {
+	}
+
+	public Product(Long productId) {
+		this.productId = productId;
 	}
 
 	public Product(String name, String detail, String image, double price) {
