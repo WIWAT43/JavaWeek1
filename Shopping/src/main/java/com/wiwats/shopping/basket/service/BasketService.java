@@ -30,21 +30,13 @@ public class BasketService {
     public BasketRespond addProductToBasket(BasketRequest basketRequest){
      Optional<User> user = userRepository.findById(basketRequest.getUserId());
      Optional<Product> product = productRepository.findById(basketRequest.getProductId());
-     Optional<Basket> basketCurrentData = basketRepository.findById(basketRequest.getBasketId());
 
      Basket basketReturnSave = new Basket();
-     if(basketCurrentData.isEmpty()|| basketCurrentData==null){
+
          Basket basket = new Basket();
          basket.addBasketItem(basketRequest.getBasketId(),user.get(),product.get(),basketRequest.getProductUnit());
          basketReturnSave = basketRepository.save(basket);
-     } else {
-         Basket basket = new Basket();
 
-         basket.addBasketItem(basketCurrentData.get().getBasketId(),basketCurrentData.get().getUser(),basketCurrentData.get().getProduct(),basketCurrentData.get().getProductUnit()+basketRequest.getProductUnit());
-
-         basketReturnSave = basketRepository.save(basket);
-
-     }
 
 
   //  log.info( "BasketService - addProductToBasket "+ String.valueOf(basketReturnSave));
