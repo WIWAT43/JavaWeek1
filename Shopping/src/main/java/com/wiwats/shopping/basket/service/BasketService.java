@@ -4,6 +4,7 @@ import com.wiwats.shopping.basket.model.Basket;
 import com.wiwats.shopping.basket.model.BasketRequest;
 import com.wiwats.shopping.basket.model.BasketRespond;
 import com.wiwats.shopping.basket.repository.BasketRepository;
+import com.wiwats.shopping.errorHandler.UserDataIncorrectException;
 import com.wiwats.shopping.product.model.Product;
 import com.wiwats.shopping.product.repository.ProductRepository;
 import com.wiwats.shopping.user.model.User;
@@ -29,7 +30,14 @@ public class BasketService {
 
     public BasketRespond addProductToBasket(BasketRequest basketRequest){
      Optional<User> user = userRepository.findById(basketRequest.getUserId());
+
+        if (user.isEmpty() || user.equals(null)){
+            throw new UserDataIncorrectException("201");
+        }
      Optional<Product> product = productRepository.findById(basketRequest.getProductId());
+        if (product.isEmpty() || product.equals(null)){
+            throw new UserDataIncorrectException("301");
+        }
 
      Basket basketReturnSave = new Basket();
 

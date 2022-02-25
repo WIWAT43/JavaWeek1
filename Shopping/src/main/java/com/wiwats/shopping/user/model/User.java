@@ -26,8 +26,11 @@ public class User{
 		this.userId = userId;
 	}
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<Basket> baskets = new HashSet<>();
+//	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+//	private Set<Basket> baskets = new HashSet<>();
+
+//	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+//	private Set<UserAddress> userAddresses = new HashSet<>();
 
 
 	public void setUserFromRequest(UserRequest userRequest) {

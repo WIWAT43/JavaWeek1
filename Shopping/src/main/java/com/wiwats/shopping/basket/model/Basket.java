@@ -29,14 +29,14 @@ public class Basket {
     private int paymentStatus = 0;
     private int paymentTypeId = 0;
 
+
+
     public void addBasketItem(Long basketId, User user, Product product,int productUnit) {
         this.basketId = basketId;
         this.user = user;
         this.product = product;
         this.productUnit = productUnit;
     }
-
-
     public String toReturnString() {
         return "Basket{" +
                 "basketId=" + basketId +

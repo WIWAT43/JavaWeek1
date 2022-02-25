@@ -15,6 +15,11 @@ public class UserAddressRequest {
     private String city;
     private String postalCode;
     private String country;
+    private int statusActive;
+
+
+    public UserAddressRequest() {
+    }
 
     public UserAddressRequest(UserAddress userAddress) {
         this.addressId = userAddress.getAddressId();
@@ -24,5 +29,6 @@ public class UserAddressRequest {
         this.city = userAddress.getCity();
         this.postalCode = userAddress.getPostalCode();
         this.country = userAddress.getCountry();
+        this.statusActive = userAddress.getStatusActive();
     }
 }
