@@ -10,4 +10,6 @@ import java.util.List;
 public interface BasketRepository extends JpaRepository<Basket,Long> {
 
     List<Basket> findByUser(User user);
+
+    List<Basket> findByUserAndPaymentStatusLike(User user,int paymentStatus);
 }

@@ -48,7 +48,7 @@ public class BasketService {
 
     public List<BasketRespond> findByUserId (Long userId){
 
-        List<Basket> baskets = basketRepository.findByUser(new User(userId));
+        List<Basket> baskets = basketRepository.findByUserAndPaymentStatusLike(new User(userId),0);
 
         List<BasketRespond> basketRespond = new ArrayList<>();
 

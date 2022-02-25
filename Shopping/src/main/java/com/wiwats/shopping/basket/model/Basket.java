@@ -23,7 +23,11 @@ public class Basket {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    private int productUnit;
+    private int productUnit = 0;
+
+    private Long userAddressID = 0L;
+    private int paymentStatus = 0;
+    private int paymentTypeId = 0;
 
     public void addBasketItem(Long basketId, User user, Product product,int productUnit) {
         this.basketId = basketId;

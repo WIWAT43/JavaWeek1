@@ -10,7 +10,7 @@ public class UserAddress{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int addressId;
+	private Long addressId;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -22,4 +22,13 @@ public class UserAddress{
 	private String postalCode;
 	private String country;
 
+	public UserAddress(UserAddressRequest userAddressRequest) {
+		this.addressId = userAddressRequest.getAddressId();
+		this.user = new User(userAddressRequest.getUserId());
+		this.addressLine1 = userAddressRequest.getAddressLine1();
+		this.addressLine2 = userAddressRequest.getAddressLine2();
+		this.city = userAddressRequest.getCity();
+		this.postalCode = userAddressRequest.getPostalCode();
+		this.country = userAddressRequest.getCountry();
+	}
 }
