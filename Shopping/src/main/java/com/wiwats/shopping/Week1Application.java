@@ -2,9 +2,13 @@ package com.wiwats.shopping;
 
 import com.wiwats.shopping.basket.model.BasketRequest;
 import com.wiwats.shopping.basket.service.BasketService;
+import com.wiwats.shopping.payment.model.UserPayment;
+import com.wiwats.shopping.payment.repository.UserPaymentRepository;
 import com.wiwats.shopping.product.model.Product;
 import com.wiwats.shopping.product.repository.ProductRepository;
 import com.wiwats.shopping.user.model.User;
+import com.wiwats.shopping.user.model.UserAddress;
+import com.wiwats.shopping.user.repository.UserAddressRepository;
 import com.wiwats.shopping.user.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -56,15 +60,35 @@ public class Week1Application {
 		};
 	}
 
-//	@Bean
-//	public CommandLineRunner demoBasketData(BasketService basketService) {
-//		return args -> {
-//			basketService.addProductToBasket(new BasketRequest(0L,1L,1L,1));
-//			basketService.addProductToBasket(new BasketRequest(0L,1L,2L,8));
-//			basketService.addProductToBasket(new BasketRequest(0L,2L,3L,9));
-//			basketService.addProductToBasket(new BasketRequest(0L,2L,1L,3));
-//			basketService.addProductToBasket(new BasketRequest(0L,3L,3L,2));
-//		};
-//	}
+	@Bean
+	public CommandLineRunner demoBasketData(BasketService basketService) {
+		return args -> {
+			basketService.addProductToBasket(new BasketRequest(0L,1L,1L,1));
+			basketService.addProductToBasket(new BasketRequest(0L,1L,2L,8));
+			basketService.addProductToBasket(new BasketRequest(0L,2L,3L,9));
+			basketService.addProductToBasket(new BasketRequest(0L,2L,1L,3));
+			basketService.addProductToBasket(new BasketRequest(0L,3L,3L,2));
+		};
+	}
+
+	@Bean
+	public CommandLineRunner demoAddUserPayment(UserPaymentRepository userPaymentRepository) {
+		return args -> {
+			userPaymentRepository.save(new UserPayment(new User(1L),1,"12345678","Card Name01",2,25,"332",1));
+			userPaymentRepository.save(new UserPayment(new User(2L),1,"23423443","Card Name02",2,25,"123",1));
+			userPaymentRepository.save(new UserPayment(new User(3L),1,"57654658","Card Name03",2,25,"321",1));
+
+		};
+	}
+
+	@Bean
+	public CommandLineRunner demoAddUserAddress(UserAddressRepository userAddressRepository) {
+		return args -> {
+			userAddressRepository.save(new UserAddress(new User(1L),"Address Line1","Address Line2","Bangkok","10123","Thailand",1 ));
+			userAddressRepository.save(new UserAddress(new User(2L),"Address Line1","Address Line2","Bangkok","10123","Thailand",1 ));
+			userAddressRepository.save(new UserAddress(new User(3L),"Address Line1","Address Line2","Bangkok","10123","Thailand",1 ));
+
+		};
+	}
 	
 }

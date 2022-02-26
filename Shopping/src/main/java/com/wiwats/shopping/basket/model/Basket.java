@@ -1,5 +1,7 @@
 package com.wiwats.shopping.basket.model;
 
+import com.wiwats.shopping.payment.model.PaymentTransaction;
+import com.wiwats.shopping.payment.model.UserPayment;
 import com.wiwats.shopping.product.model.Product;
 import com.wiwats.shopping.user.model.User;
 import lombok.Data;
@@ -26,9 +28,16 @@ public class Basket {
     private int productUnit = 0;
 
     private Long userAddressID = 0L;
-    private int paymentStatus = 0;
-    private int paymentTypeId = 0;
 
+    @ManyToOne
+    @JoinColumn(name = "payment_id")
+    private UserPayment userPayment;
+
+    @ManyToOne
+    @JoinColumn(name = "transaction_id")
+    private PaymentTransaction paymentTransaction;
+
+    private int paymentStatus=0;
 
 
     public void addBasketItem(Long basketId, User user, Product product,int productUnit) {
@@ -45,5 +54,14 @@ public class Basket {
                 ", product_name=" + product.getName() +
                 ", productUnit=" + productUnit +
                 '}';
+    }
+
+    public void addPaymentTransaction (PaymentTransaction paymentTransaction){
+        this.paymentTransaction = paymentTransaction;
+        this.paymentStatus = 1;
+    }
+
+    public void setUserAddressID(Long userAddressID) {
+        this.userAddressID = userAddressID;
     }
 }
