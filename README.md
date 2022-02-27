@@ -2,6 +2,10 @@
 การบ้าน JavaBootCamp Shopping
 
 
+![ScreenShot](DATABASE_DIAGRAM.png)
+
+
+
 1.Search prodduct by name
 
 ผู้ใช้งานสามารถส่งชื่อสินค้าเข้ามาค้นหาได้เลยโดยระบบจะทำการค้นหาคำในชื่อสินค้าให้
