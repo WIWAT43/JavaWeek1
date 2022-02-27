@@ -1,15 +1,14 @@
 package com.wiwats.shopping.product.controller;
 
 import com.wiwats.shopping.errorHandler.UserDataIncorrectException;
+import com.wiwats.shopping.payment.model.PayRequest;
+import com.wiwats.shopping.payment.model.PaymentSummary;
 import com.wiwats.shopping.product.model.Product;
 import com.wiwats.shopping.product.model.ProductRespond;
 import com.wiwats.shopping.product.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +23,16 @@ public class ProductController {
     ProductRepository productRepository;
 
     @GetMapping("/findAllProduct")
-    public List<Product> findAllProduct(){
-        return productRepository.findAll();
+    public List<ProductRespond> findAllProduct(){
+
+        List<Product> products = productRepository.findAll();
+
+        List<ProductRespond> productResponds = new ArrayList<>();
+        for (Product product : products) {
+            productResponds.add(new ProductRespond(product));
+        }
+
+        return productResponds;
     }
 
     @GetMapping("/findByNameContaining/{productName}")
@@ -57,4 +64,14 @@ public class ProductController {
 
         return productRespond;
     }
+
+
+    @PostMapping(value = "/addProduct")
+    public ProductRespond addProduct(@RequestBody ProductRespond productRespond){
+
+        Product product = productRepository.save(new Product(productRespond));
+        ProductRespond result = new ProductRespond(product);
+        return result;
+    }
+
 }

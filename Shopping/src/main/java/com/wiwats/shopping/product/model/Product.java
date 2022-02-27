@@ -35,4 +35,12 @@ public class Product{
 		this.image = image;
 		this.price = price;
 	}
+
+	public Product(ProductRespond productRespond) {
+		this.productId = productRespond.getProductId();
+		this.name = productRespond.getName();
+		this.detail = productRespond.getDetail();
+		this.image = productRespond.getImage();
+		this.price = productRespond.getPrice();
+	}
 }

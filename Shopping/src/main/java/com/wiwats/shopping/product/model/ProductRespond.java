@@ -17,6 +17,17 @@ public class ProductRespond {
     private String image;
     private double price;
 
+    public ProductRespond() {
+    }
+
+    public ProductRespond(Long productId, String name, String detail, String image, double price) {
+        this.productId = productId;
+        this.name = name;
+        this.detail = detail;
+        this.image = image;
+        this.price = price;
+    }
+
     public ProductRespond(Product product) {
         this.productId = product.getProductId();
         this.name = product.getName();

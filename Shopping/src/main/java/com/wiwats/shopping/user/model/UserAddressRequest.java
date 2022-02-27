@@ -18,6 +18,16 @@ public class UserAddressRequest {
     private int statusActive;
 
 
+    public UserAddressRequest(Long userId, String addressLine1, String addressLine2, String city, String postalCode, String country, int statusActive) {
+        this.userId = userId;
+        this.addressLine1 = addressLine1;
+        this.addressLine2 = addressLine2;
+        this.city = city;
+        this.postalCode = postalCode;
+        this.country = country;
+        this.statusActive = statusActive;
+    }
+
     public UserAddressRequest() {
     }
 
