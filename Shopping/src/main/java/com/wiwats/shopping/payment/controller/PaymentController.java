@@ -2,16 +2,16 @@ package com.wiwats.shopping.payment.controller;
 
 
 import com.wiwats.shopping.errorHandler.UserDataIncorrectException;
-import com.wiwats.shopping.payment.model.PayRequest;
-import com.wiwats.shopping.payment.model.UserPayment;
-import com.wiwats.shopping.payment.model.UserPaymentRequest;
+import com.wiwats.shopping.payment.model.*;
 import com.wiwats.shopping.payment.repository.UserPaymentRepository;
+import com.wiwats.shopping.payment.service.PaidService;
+import com.wiwats.shopping.user.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -21,6 +21,8 @@ public class PaymentController {
     @Autowired
     UserPaymentRepository userPaymentRepository;
 
+    @Autowired
+    PaidService paidService;
 
     @PostMapping(value = "/addUserPayment")
     public String addUserPayment(@RequestBody UserPaymentRequest userPaymentRequest){
@@ -35,8 +37,22 @@ public class PaymentController {
 
 
     @PostMapping(value = "/paid")
-    public void paid(@RequestBody PayRequest payRequest){
+    public PaymentSummary paid(@RequestBody PayRequest payRequest){
 
+        return paidService.paid(payRequest);
+    }
+
+    @GetMapping("/getUserPaymentByUserIdAndStatus/{userId},{status}")
+    public List<UserPaymentReturn> getUserPaymentByUserIdAndStatus(@PathVariable Long userId,@PathVariable  int status){
+
+        List<UserPayment> userPayment = userPaymentRepository.findByUserAndStatusActiveLike(new User(userId),status);
+    List<UserPaymentReturn> userPaymentReturns = new ArrayList<>();
+
+        for (UserPayment payment : userPayment) {
+            userPaymentReturns.add( new UserPaymentReturn(payment));
+        }
+
+        return userPaymentReturns;
     }
 
 }

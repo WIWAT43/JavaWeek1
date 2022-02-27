@@ -54,4 +54,9 @@ public class User{
 		this.createdDate = createdDate;
 		this.password = password;
 	}
+
+	public String getFullName() {
+		return firstName +" "+lastName;
+	}
+
 }

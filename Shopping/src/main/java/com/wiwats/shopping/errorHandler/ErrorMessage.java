@@ -16,6 +16,7 @@ public class ErrorMessage {
           case "501":   this.message ="Can not save data to database"; break;
           case "601":   this.message ="Basket data and user mismatch"; break;
           case "701":   this.message ="User Payment Not found"; break;
+          case "801":   this.message ="User Address Not found"; break;
           default:   this.message =errorMessage;
       }
 

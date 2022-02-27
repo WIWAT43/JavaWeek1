@@ -31,4 +31,10 @@ public class UserAddressRequest {
         this.country = userAddress.getCountry();
         this.statusActive = userAddress.getStatusActive();
     }
+
+    public String getFullAddress() {
+        return this.addressLine1+" "+this.addressLine2+" "+this.city+" "+this.postalCode+" "+this.country;
+    }
+
+
 }
