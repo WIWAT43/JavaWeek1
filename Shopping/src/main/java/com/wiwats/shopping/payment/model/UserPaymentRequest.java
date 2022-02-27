@@ -14,4 +14,19 @@ public class UserPaymentRequest {
     private int yearExpire;
     private String ccv;
     private int statusActive=0;
+
+    public UserPaymentRequest() {
+    }
+
+    public UserPaymentRequest(int paymentId, Long userId, int paymentType, String cardNumber, String cardName, int monthExpire, int yearExpire, String ccv, int statusActive) {
+        this.paymentId = paymentId;
+        this.userId = userId;
+        this.paymentType = paymentType;
+        this.cardNumber = cardNumber;
+        this.cardName = cardName;
+        this.monthExpire = monthExpire;
+        this.yearExpire = yearExpire;
+        this.ccv = ccv;
+        this.statusActive = statusActive;
+    }
 }
