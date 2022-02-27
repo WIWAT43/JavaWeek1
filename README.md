@@ -72,7 +72,7 @@ http://localhost:8080/basket/addProductToBasket
   "productUnit": 3
 }
 
-5. Show Data in basket
+5-6. Show Data in basket
 
 สามารถส่ง User ID เข้ามาค้นหาได้เลย
 
@@ -97,3 +97,68 @@ http://localhost:8080/basket/findByUserId/{User ID}
   },
   
 ]
+
+7.Shipping
+
+ตัวอย่างการ บันทึกที่อยู่สำหรับส่งสินค้า
+Post
+http://localhost:8080/userAddress/register
+
+{
+  "addressId": 0,
+  "addressLine1": "string",
+  "addressLine2": "string",
+  "city": "string",
+  "country": "string",
+  "fullAddress": "string",
+  "postalCode": "string",
+  "statusActive": 0, // statusActive ตั้งค้าเป็นที่อยู่หลัก ให้ใส่ 1
+  "userId": 0
+}
+
+8. Payment 
+
+ตัวอย่างการ บันทึกวิธีชำระค่าใช้จ่าย
+Post
+http://localhost:8080/Payment/addUserPayment
+
+{
+  "cardName": "string",
+  "cardNumber": "string",
+  "ccv": "string",
+  "monthExpire": 0,
+  "paymentId": 0,
+  "paymentType": 0,
+  "statusActive": 0,   // statusActive ตั้งค้าเป็นที่อยู่หลัก ให้ใส่ 1
+  "userId": 0,
+  "yearExpire": 0
+}
+
+9-10. Confirm to oreder
+
+Post
+http://localhost:8080/Payment/paid
+
+ให้ทำการส่งหมายเลขตระกล้าสินค้าพร้อมกับ User ID ระบบจะทำการ ดึงต่าอัตโนมัติ
+{
+  "basketId": [
+    1,2
+  ],
+  "userId": 1
+}
+
+วิธีการตรวจสอบตระกร้าสินค้า
+Get
+http://localhost:8080/basket/findByUserId/{user ID}
+
+
+
+เมื่อชำระสำเร็จจะคืนค่า Summary
+{
+  "transactionId": 1,
+  "dateTime": "Sun Feb 27 19:37:40 ICT 2022",
+  "totalPay": 1700,
+  "userPaymentId": 1,
+  "userFullName": "First Name 01 Last Name 01",
+  "address": "Address Line1 Address Line2 Bangkok 10123 Thailand"
+}
