@@ -16,4 +16,7 @@ public class BasketRequest {
         this.productId = productId;
         this.productUnit = productUnit;
     }
+
+    public BasketRequest() {
+    }
 }
